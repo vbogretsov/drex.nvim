@@ -783,14 +783,6 @@ function M.delete(mode)
         vim.cmd('redraw')
     end
 
-    -- confirm to delete selected element(s)
-    local prompt = 'Should the following elements really be deleted?\n' .. table.concat(elements, '\n')
-    local action = vim.fn.confirm(prompt, '&Yes\n&No', 2)
-    if action ~= 1 then
-        clear_matches()
-        return false
-    end
-
     -- for multiple entries reverse the order to delete more specific paths first
     -- for the confirm prompt an alphabetical order is used for better readability
     if #elements > 1 then
